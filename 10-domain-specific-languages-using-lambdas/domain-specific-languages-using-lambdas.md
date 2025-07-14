@@ -29,169 +29,66 @@
 
 ---
 
+---
+
 ## 📋 Resumo Executivo
 
 ### 🎯 Conceitos-Chave
 
-| **Conceito** | **Definição** | **Importância** |
-|-------------|---------------|------------------|
-| **DSL** | Linguagem customizada para domínio específico | Ponte entre desenvolvedores e especialistas |
-| **Comunicação** | Código compreensível por não-programadores | Validação de requisitos de negócio |
-| **Lambdas** | Ferramenta poderosa para reduzir verbosidade | Torna Java viável para DSLs elegantes |
+**DSLs** são linguagens customizadas para domínios específicos que facilitam comunicação entre desenvolvedores e especialistas. **Lambdas** no Java 8+ tornaram viável criar DSLs elegantes e concisas.
 
 ### ⚖️ Análise Custo-Benefício
 
-#### ✅ Benefícios das DSLs
-- **Concisão:** Menos código repetitivo
-- **Legibilidade:** Vocabulário do domínio 
-- **Manutenibilidade:** Código mais fácil de modificar
-- **Abstração:** Esconde detalhes irrelevantes
-- **Foco:** Concentração na lógica de negócio
-- **Separação:** Isola regras de negócio da infraestrutura
+**✅ Benefícios:** Concisão, legibilidade, manutenibilidade, abstração, foco no negócio  
+**❌ Custos:** Design complexo, investimento inicial, curva de aprendizado, limitações
 
-#### ❌ Custos das DSLs
-- **Design complexo:** Difícil capturar conhecimento do domínio
-- **Investimento inicial:** Alto custo de desenvolvimento
-- **Indireção:** Camada adicional com possível impacto na performance
-- **Curva de aprendizado:** Mais uma linguagem para aprender
-- **Limitações:** Sintaxe restrita pela linguagem hospedeira
+### 🏗️ Tipos de DSL
 
-### 🏗️ Tipos de DSL na JVM
-
-#### 📊 Comparação Estratégica
-
-| **Tipo** | **Esforço** | **Flexibilidade** | **Integração** | **Quando Usar** |
-|----------|-------------|-------------------|----------------|-----------------|
-| **Interna** | Baixo | Limitada | Excelente | Usuários técnicos, integração simples |
-| **Poliglota** | Médio | Alta | Boa | DSLs complexas, equipe experiente |
-| **Externa** | Alto | Máxima | Complexa | Usuários não-técnicos, máxima flexibilidade |
+- **Interna:** Baixo esforço, integração excelente, flexibilidade limitada
+- **Poliglota:** Esforço médio, alta flexibilidade, requer expertise
+- **Externa:** Alto esforço, máxima flexibilidade, para usuários não-técnicos
 
 ### 🛠️ Padrões de Implementação
 
-#### 🎯 Padrões e Casos de Uso
-
-| **Padrão** | **Melhor Para** | **Exemplo** |
-|------------|-----------------|-------------|
-| **Method Chaining** | APIs fluentes, sequência específica | `builder.setName().setAge().build()` |
-| **Nested Functions** | Estruturas hierárquicas | `order("client", buy(100, stock("IBM")))` |
-| **Lambda Sequencing** | Configuração flexível | `order(o -> { o.client("x"); o.buy(...); })` |
-| **Method References** | Operações similares sequenciais | `calculator.with(Tax::regional).with(Tax::surcharge)` |
-| **Híbrido** | DSLs complexas | Combinação inteligente dos padrões |
+- **Method Chaining:** Sequência específica (`builder.setName().setAge()`)
+- **Nested Functions:** Estruturas hierárquicas (`order("client", buy(...))`)
+- **Lambda Sequencing:** Configuração flexível (`order(o -> { o.client("x"); })`)
+- **Method References:** Operações similares (`calculator.with(Tax::regional)`)
+- **Híbrido:** Combinação inteligente dos padrões
 
 ### 🌟 APIs Java Nativas como DSL
 
-#### 📊 Exemplos Práticos
-
-| **API** | **Padrão** | **Vantagem** | **Uso** |
-|---------|------------|--------------|---------|
-| **Stream** | Fluente | Pipeline intuitivo | Processamento de dados |
-| **Comparator** | Fluente | Composição natural | Ordenação complexa |
-| **Collectors** | Aninhado | Execução técnica clara | Agrupamento multinível |
+**Stream API**, **Comparator** e **Collectors** são exemplos de DSLs internas bem-sucedidas que combinam fluência com funcionalidade.
 
 ### 🌍 Casos Reais de Sucesso
 
-#### 🏆 Frameworks com DSLs
-
-| **Framework** | **Domínio** | **Padrão** | **Benefício Principal** |
-|---------------|-------------|------------|-------------------------|
-| **jOOQ** | SQL/Database | Method Chaining | Type-safety + Fluência |
-| **Cucumber** | Testing/BDD | Externa + Interna | Documentação Executável |
-| **Spring Integration** | Enterprise Integration | Chaining + Lambdas | Configuração Simplificada |
+- **jOOQ:** SQL type-safe com method chaining
+- **Cucumber:** BDD com DSL externa + interna
+- **Spring Integration:** Enterprise patterns com lambdas
 
 ### 📈 Impacto do Java 8+
 
-#### 🔄 Antes vs Depois
-
-**Antes do Java 8:**
-- Classes anônimas verbosas
-- DSLs limitadas e deselegantes
-- Alternativas JVM necessárias
-
-**Java 8+:**
-- Lambdas e method references
-- DSLs concisas e elegantes
-- Java viável para DSLs internas
+Lambdas e method references transformaram Java em plataforma viável para DSLs internas elegantes, reduzindo necessidade de linguagens alternativas.
 
 ### 🎯 Diretrizes para Decisão
 
-#### ✅ Quando Implementar DSL
-
-1. **Lógica de negócio complexa** e frequentemente alterada
-2. **Necessidade de comunicação** com especialistas do domínio
-3. **Código repetitivo** e verboso
-4. **Benefícios superam custos** de desenvolvimento
-
-#### ❌ Quando Evitar DSL
-
-1. **Lógica simples** e estável
-2. **Equipe pequena** sem experiência
-3. **Prazo apertado** para entrega
-4. **Performance crítica** sem tolerância à overhead
-
-### 🔧 Checklist de Implementação
-
-#### 📋 Passos Essenciais
-
-1. **Análise do domínio** e identificação de padrões
-2. **Seleção do tipo** de DSL apropriado
-3. **Escolha dos padrões** de implementação
-4. **Desenvolvimento iterativo** com feedback
-5. **Testes extensivos** e documentação
-6. **Treinamento da equipe** e usuários
+**Use DSL quando:** Lógica complexa, comunicação com especialistas, código repetitivo, benefícios superam custos  
+**Evite quando:** Lógica simples, equipe pequena, prazo apertado, performance crítica
 
 ### 💡 Lições Aprendidas
 
-#### 🎯 Principais Insights
-
 1. **Combinação de padrões** é comum e eficaz
-2. **Type-safety** é crucial para DSLs de produção
+2. **Type-safety** é crucial para DSLs de produção  
 3. **Integração com APIs existentes** potencializa DSLs
 4. **Lambdas** reduzem significativamente verbosidade
-5. **Documentação executável** é benefício valioso
 
-#### 🚀 Tendências Futuras
+### 🏁 Conclusão
 
-- **DSLs híbridas** combinando múltiplos padrões
-- **Integração com IA** para geração de DSLs
-- **Tooling aprimorado** para desenvolvimento
-- **Performance otimizada** com compilação especializada
-
-### 🏁 Conclusão Final
-
-**DSLs bem projetadas** são ferramentas poderosas que podem transformar a produtividade e legibilidade do código. O **Java 8+** com lambdas e method references tornou viável criar DSLs internas elegantes, reduzindo a necessidade de linguagens alternativas.
-
-**Sucesso depende de:**
-- Análise cuidadosa do domínio
-- Seleção apropriada de padrões
-- Implementação iterativa
-- Balanceamento entre benefícios e custos
-
-**O futuro das DSLs** está na combinação inteligente de padrões e integração com ferramentas modernas de desenvolvimento, sempre priorizando a **comunicação clara** e **manutenibilidade** do código.
+DSLs bem projetadas são ferramentas poderosas para produtividade e legibilidade. O **Java 8+** tornou viável criar DSLs internas elegantes. Sucesso depende de análise cuidadosa do domínio, seleção apropriada de padrões e balanceamento entre benefícios e custos.
 
 ---
 
 ## ⚖️ Prós e Contras das DSLs
-
-### ✅ Benefícios das DSLs
-
-| **Benefício** | **Descrição** | **Impacto** |
-|---------------|---------------|-------------|
-| **Concisão** | Encapsula lógica de negócio, evitando repetição | Código menos verboso |
-| **Legibilidade** | Vocabulário do domínio compreensível por não-especialistas | Conhecimento compartilhado |
-| **Manutenibilidade** | Código mais fácil de modificar | Especialmente importante para lógica de negócio |
-| **Abstração** | Operações no nível do domínio | Esconde detalhes irrelevantes |
-| **Foco** | Linguagem dedicada às regras de negócio | Maior produtividade |
-| **Separação** | Lógica de negócio isolada da infraestrutura | Código mais organizado |
-
-### ❌ Desvantagens das DSLs
-
-| **Desvantagem** | **Descrição** | **Impacto** |
-|-----------------|---------------|-------------|
-| **Complexidade do Design** | Difícil capturar conhecimento do domínio | Requer experiência em design |
-| **Custo de Desenvolvimento** | Investimento de longo prazo com alto custo inicial | Pode atrasar projetos |
-| **Indireção** | Camada adicional sobre o modelo de domínio | Possível impacto na performance |
-| **Curva de Aprendizado** | Mais uma linguagem para a equipe aprender | Overhead de treinamento |
-| **Limitações da Linguagem** | Sintaxe restrita pela linguagem hospedeira | Java é particularmente verboso |
 
 ### 🎯 Quando Vale a Pena?
 
@@ -209,142 +106,59 @@
 
 ## 🏗️ Tipos de DSLs na JVM
 
-### 📊 Comparação dos Tipos
+### 📊 Visão Geral
 
-| **Tipo** | **Implementação** | **Linguagem** | **Esforço** | **Flexibilidade** |
-|----------|------------------|---------------|-------------|------------------|
-| **Interna** | Sobre linguagem hospedeira | Java | Baixo | Limitada |
-| **Poliglota** | Outras linguagens JVM | Scala, Groovy, Kotlin | Médio | Alta |
-| **Externa** | Linguagem independente | Custom + Parser | Alto | Máxima |
-
----
+| **Tipo** | **Esforço** | **Flexibilidade** | **Integração** | **Quando Usar** |
+|----------|-------------|-------------------|----------------|-----------------|
+| **Interna** | Baixo | Limitada | Excelente | Usuários técnicos, integração simples |
+| **Poliglota** | Médio | Alta | Boa | DSLs complexas, equipe experiente |
+| **Externa** | Alto | Máxima | Complexa | Usuários não-técnicos, máxima flexibilidade |
 
 ### 1️⃣ DSL Interna (Embedded)
 
 **Conceito:** Implementada na mesma linguagem da aplicação (Java).
 
 #### ✅ Vantagens
-
 - **Baixo esforço** de aprendizado
-- **Compilação integrada** com o resto do código
-- **Sem ferramentas externas** necessárias
 - **Suporte completo da IDE** (autocompletar, refactoring)
-- **Composição fácil** de múltiplas DSLs
+- **Sem ferramentas externas** necessárias
 
 #### ❌ Desvantagens
-
 - **Limitada pela sintaxe** da linguagem hospedeira
-- **Verbosidade** do Java
 - **Menor flexibilidade** sintática
-
-#### 🎯 Quando Usar
-
-- Usuários tecnicamente orientados
-- Equipe já familiarizada com Java
-- Integração com código existente
-- Múltiplas DSLs no mesmo projeto
-
----
 
 ### 2️⃣ DSL Poliglota (Alternativas JVM)
 
-**Conceito:** Usa outras linguagens que rodam na JVM (100+ disponíveis).
+**Conceito:** Usa outras linguagens que rodam na JVM.
 
 #### 🌟 Exemplo Scala: Função `times`
-
 ```scala
-// Evolução da implementação
-times(3, println("Hello World"))           // 1. Básica - verbosa
-
-times(3) {                                 // 2. Com currying
-    println("Hello World")
-}
-
-3 times {                                  // 3. DSL elegante
+3 times {
     println("Hello World")
 }
 ```
 
-**"Mágica" do Scala:** Conversão implícita transforma `3` em objeto com método `times`.
-
 #### ✅ Vantagens
-
 - **Sintaxe menos verbosa** que Java
-- **Recursos avançados** (currying, conversões implícitas)
 - **DSLs mais naturais** e elegantes
-- **Interoperabilidade** com Java
 
 #### ❌ Desvantagens
-
 - **Nova linguagem** para aprender
-- **Build mais complexo** (múltiplos compiladores)
-- **Interoperabilidade imperfeita** (collections diferentes)
-- **Possível perda de performance** nas conversões
-- **Necessidade de especialistas** ou treinamento
-
-#### 🎯 Quando Usar
-
-- Equipe experiente ou disposta a aprender
-- DSL muito complexa que se beneficia da flexibilidade
-- Performance não é crítica
-- Benefícios superam complexidade adicional
-
----
+- **Build mais complexo**
+- **Necessidade de especialistas**
 
 ### 3️⃣ DSL Externa (Standalone)
 
 **Conceito:** Linguagem completamente nova, independente da hospedeira.
 
-#### 🛠️ Implementação
-
-1. **Projetar** nova linguagem com sintaxe própria
-2. **Configurar** infraestrutura de parsing
-3. **Analisar** saída do parser
-4. **Gerar** código executável
-
-**Ferramenta recomendada:** ANTLR (gerador de parser)
-
 #### ✅ Vantagens
-
 - **Máxima flexibilidade** sintática
-- **Sintaxe otimizada** para o domínio
 - **Independência** da linguagem hospedeira
-- **Expressividade total** do domínio
 
 #### ❌ Desvantagens
-
 - **Muito trabalho** de implementação
 - **Habilidades especializadas** necessárias
-- **Ferramentas complexas** (parsers, geradores)
 - **Manutenção adicional** da linguagem
-- **Integração complexa** com sistema existente
-
-#### 🎯 Quando Usar
-
-- Domínio muito específico e complexo
-- Equipe com expertise em compiladores
-- Investimento de longo prazo justificado
-- Usuários finais não-técnicos
-
----
-
-### 🎯 Guia de Decisão
-
-```
-Precisa de máxima flexibilidade sintática?
-├── SIM → DSL Externa
-└── NÃO → Continue
-
-Equipe tem experiência com outras linguagens JVM?
-├── SIM → DSL Poliglota (Scala/Groovy)
-└── NÃO → Continue
-
-Integração simples com Java é prioridade?
-├── SIM → DSL Interna (Java)
-└── NÃO → Reconsidere necessidade da DSL
-```
-
-**Conclusão:** Java 8+ com lambdas reduziu significativamente a lacuna, tornando DSLs internas mais viáveis e mantendo simplicidade de integração.
 
 
 ## 🔧 DSLs nas APIs Modernas do Java
@@ -462,72 +276,35 @@ groupOn(Car::getColor).after(Car::getBrand).get()
 
 ## 🛠️ Padrões para Criar DSLs em Java
 
+### 📊 Comparação dos Padrões
+
+| **Padrão** | **Melhor Para** | **Vantagens** | **Desvantagens** |
+|------------|-----------------|---------------|------------------|
+| **Method Chaining** | Sequência específica | Argumentos nomeados, ordem forçada | Implementação verbosa |
+| **Nested Functions** | Estruturas hierárquicas | Implementação simples, hierarquia natural | Métodos estáticos, argumentos posicionais |
+| **Lambda Sequencing** | Configurações flexíveis | Flexibilidade máxima | Ruído sintático das lambdas |
+| **Híbrido** | DSLs complexas | Combina vantagens | Menos uniforme, curva de aprendizado |
+| **Method References** | Operações sequenciais similares | Muito legível, escalável | Nem sempre aplicável |
+
 ### 🎯 Domínio de Exemplo: Sistema de Trading
 
-Para demonstrar os padrões, vamos usar um sistema de trading com estas classes:
-
-#### 📊 Modelo de Domínio
-
-```java
-public class Stock {
-    private String symbol;    // Símbolo da ação (IBM, GOOGLE)
-    private String market;    // Mercado (NYSE, NASDAQ)
-    // getters/setters...
-}
-
-public class Trade {
-    public enum Type { BUY, SELL }
-    
-    private Type type;        // Tipo da operação
-    private Stock stock;      // Ação negociada
-    private int quantity;     // Quantidade
-    private double price;     // Preço unitário
-    // getters/setters...
-    
-    public double getValue() { 
-        return quantity * price; 
-    }
-}
-
-public class Order {
-    private String customer;        // Cliente
-    private List<Trade> trades;     // Lista de operações
-    // getters/setters...
-    
-    public double getValue() {
-        return trades.stream().mapToDouble(Trade::getValue).sum();
-    }
-}
-```
-
-#### ❌ Código Tradicional - Verboso
+Para demonstrar os padrões, vamos usar um sistema de trading. **Objetivo:** Transformar este código verboso:
 
 ```java
 Order order = new Order();
 order.setCustomer("BigBank");
-
 Trade trade1 = new Trade();
 trade1.setType(Trade.Type.BUY);
-Stock stock1 = new Stock();
-stock1.setSymbol("IBM");
-stock1.setMarket("NYSE");
-trade1.setStock(stock1);
-trade1.setPrice(125.00);
-trade1.setQuantity(80);
-order.addTrade(trade1);
-
-Trade trade2 = new Trade();
-trade2.setType(Trade.Type.BUY);
-Stock stock2 = new Stock();
-stock2.setSymbol("GOOGLE");
-stock2.setMarket("NASDAQ");
-trade2.setStock(stock2);
-trade2.setPrice(375.00);
-trade2.setQuantity(50);
-order.addTrade(trade2);
+// ... mais 10 linhas de código repetitivo
 ```
 
-**Problema:** Código verboso e difícil de validar por especialistas do domínio.
+**Em uma DSL legível:**
+```java
+Order order = forCustomer("BigBank")
+    .buy(80).stock("IBM").on("NYSE").at(125.00)
+    .sell(50).stock("GOOGLE").on("NASDAQ").at(375.00)
+    .end();
+```
 
 ---
 
@@ -811,15 +588,14 @@ public class StockBuilder {
 
 ---
 
-### 🎯 Comparação dos Padrões
+### 🎯 Escolhendo o Padrão Ideal
 
-| **Padrão** | **Legibilidade** | **Implementação** | **Flexibilidade** | **Uso Ideal** |
-|------------|------------------|-------------------|------------------|---------------|
-| **Method Chaining** | ⭐⭐⭐⭐⭐ | ⭐⭐ | ⭐⭐⭐ | Sequência específica |
-| **Nested Functions** | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐ | Estrutura hierárquica |
-| **Lambda Sequencing** | ⭐⭐⭐ | ⭐⭐ | ⭐⭐⭐⭐⭐ | Configuração flexível |
-
-**Próximo:** Veremos como combinar os três padrões para máxima expressividade.
+**Guia de decisão:**
+- **Sequência específica** → Method Chaining
+- **Estrutura hierárquica** → Nested Functions  
+- **Configuração flexível** → Lambda Sequencing
+- **DSL complexa** → Híbrido
+- **Operações similares** → Method References
 
 
 ### 🔄 Padrão 4: Abordagem Mista (Híbrida)
@@ -1253,67 +1029,42 @@ String result = new TextFormatter()
 
 ### 📊 Resumo Comparativo dos Padrões
 
-| **Padrão** | **Prós** | **Contras** | **Melhor Para** |
-|------------|----------|-------------|-----------------|
-| **Method Chaining** | • Argumentos nomeados<br>• Ordem forçada<br>• Pouco ruído sintático | • Implementação verbosa<br>• Código de ligação<br>• Indentação por convenção | APIs fluentes com sequência específica |
-| **Nested Functions** | • Implementação simples<br>• Hierarquia natural | • Métodos estáticos<br>• Argumentos posicionais<br>• Sobrecarga necessária | Estruturas hierárquicas naturais |
-| **Lambda Sequencing** | • Parâmetros opcionais<br>• Pouco estático<br>• Hierarquia clara | • Implementação verbosa<br>• Ruído das lambdas | Configurações flexíveis |
-| **Abordagem Mista** | • Máxima flexibilidade<br>• Combina vantagens | • Menos uniforme<br>• Curva de aprendizado | DSLs complexas e variadas |
-| **Method References** | • Muito legível<br>• Escalável<br>• Funcional | • Abstração adicional<br>• Nem sempre aplicável | Operações sequenciais similares |
+| **Padrão** | **Quando Usar** | **Exemplo** |
+|------------|-----------------|-------------|
+| **Method Chaining** | Sequência específica | `builder.setName().setAge().build()` |
+| **Nested Functions** | Estruturas hierárquicas | `order("client", buy(100, stock("IBM")))` |
+| **Lambda Sequencing** | Configuração flexível | `order(o -> { o.client("x"); o.buy(...); })` |
+| **Híbrido** | DSLs complexas | Combinação inteligente dos padrões |
+| **Method References** | Operações similares | `calculator.with(Tax::regional).with(Tax::surcharge)` |
 
 **Conclusão:** A escolha do padrão depende do domínio, usuários, e complexidade. É possível e recomendado combinar padrões conforme necessário.
 
 
 ## 🌍 DSLs Java em Projetos Reais
 
-### 📊 jOOQ - SQL Type-Safe
+### 📊 Casos de Uso Práticos
 
-**Objetivo:** Escrever consultas SQL de forma type-safe e fluente em Java.
+| **Framework** | **Domínio** | **Padrão** | **Benefício Principal** |
+|---------------|-------------|------------|-------------------------|
+| **jOOQ** | SQL/Database | Method Chaining | Type-safety + Fluência |
+| **Cucumber** | Testing/BDD | Externa + Interna | Documentação Executável |
+| **Spring Integration** | Enterprise Integration | Chaining + Lambdas | Configuração Simplificada |
 
-#### 🎯 Exemplo Básico
+### 🎯 Exemplo: jOOQ - SQL Type-Safe
+
 ```java
 create.selectFrom(BOOK)
     .where(BOOK.PUBLISHED_IN.eq(2016))
     .orderBy(BOOK.TITLE)
+    .fetch()
+    .stream()
+    .collect(groupingBy(r -> r.getValue(BOOK.AUTHOR)))
 ```
 
-#### 🔧 Exemplo Completo
-```java
-// Conexão com banco
-Class.forName("org.h2.Driver");
-try (Connection c = getConnection("jdbc:h2:~/sql-goodies-with-mapping", "sa", "")) {
-    
-    DSL.using(c)
-        .select(BOOK.AUTHOR, BOOK.TITLE)
-        .where(BOOK.PUBLISHED_IN.eq(2016))
-        .orderBy(BOOK.TITLE)
-        .fetch()                    // jOOQ termina aqui
-        .stream()                   // Stream API inicia aqui
-        .collect(groupingBy(
-            r -> r.getValue(BOOK.AUTHOR),
-            LinkedHashMap::new,
-            mapping(r -> r.getValue(BOOK.TITLE), toList())))
-        .forEach((author, titles) ->
-            System.out.println(author + " is author of " + titles));
-}
-```
+**Vantagens:** Type-safety, fluência, integração com Stream API
 
-#### ✅ Características
-- **Type-safe:** Erros detectados em tempo de compilação
-- **Fluente:** Sintaxe similar ao SQL mas com validação Java
-- **Integração:** Combina perfeitamente com Stream API
-- **Código gerado:** Classes geradas a partir do schema do banco
+### 🧪 Exemplo: Cucumber - BDD Testing
 
----
-
-### 🧪 Cucumber - BDD Testing
-
-**Objetivo:** Behavior-Driven Development com testes executáveis em linguagem natural.
-
-#### 🎯 Conceito BDD
-**BDD** estende TDD usando linguagem específica de domínio para descrever cenários de negócio, servindo como **testes executáveis e critérios de aceitação**.
-
-#### 📋 Exemplo de Cenário
 ```gherkin
 Feature: Buy stock
   Scenario: Buy 10 IBM stocks
@@ -1322,68 +1073,18 @@ Feature: Buy stock
     Then the order value should be 1250$
 ```
 
-**Estrutura:** Given (pré-condições) → When (ações) → Then (verificações)
-
-#### 🔧 Implementação Java 8+
-
-**Tradicional com annotations:**
+**Implementação Java 8+:**
 ```java
-@Given("^the price of a \"(.*?)\" stock is (\\d+)\\$$")
-public void setUnitPrice(String stockName, int unitPrice) {
-    stockUnitValues.put(stockName, unitPrice);
-}
+Given("^the price of a \"(.*?)\" stock is (\\d+)\\$$",
+    (String stockName, int unitPrice) -> {
+        stockUnitValues.put(stockName, unitPrice);
+    });
 ```
 
-**Com lambdas (mais conciso):**
-```java
-public BuyStocksSteps() {
-    Given("^the price of a \"(.*?)\" stock is (\\d+)\\$$",
-        (String stockName, int unitPrice) -> {
-            stockUnitValues.put(stockName, unitPrice);
-        });
-}
-```
+**Vantagens:** Documentação executável, linguagem natural, testes como especificação
 
-#### ✅ Vantagens das Lambdas
-- **Mais compacto** que annotations
-- **Elimina necessidade** de nomes de métodos
-- **Lógica próxima** da definição do cenário
-- **Sintaxe mais limpa** e legível
+### � Exemplo: Spring Integration
 
-#### 🎯 Resultado
-- **DSL Externa:** Gherkin em inglês simples
-- **DSL Interna:** Implementação Java com lambdas
-- **Documentação Executável:** Testes que servem como especificação
-
----
-
-### 🔄 Spring Integration - Enterprise Integration
-
-**Objetivo:** Implementar Enterprise Integration Patterns com DSL fluente.
-
-#### 🎯 Características
-- **Modelo assíncrono** e orientado a mensagens
-- **Patterns empresariais** (channels, endpoints, pollers)
-- **DSL rica** além de açúcar sintático sobre XML
-
-#### 🔧 Exemplo de IntegrationFlow
-```java
-@Bean
-public IntegrationFlow myFlow() {
-    return IntegrationFlows
-        .from(this.integerMessageSource(),           // Fonte de dados
-              c -> c.poller(Pollers.fixedRate(10)))  // Polling a cada 10ms
-        .channel(this.inputChannel())                // Channel de entrada
-        .filter((Integer p) -> p % 2 == 0)          // Filtra números pares
-        .transform(Object::toString)                 // Converte para String
-        .channel(MessageChannels.queue("queueChannel")) // Channel de saída
-        .get();
-}
-```
-
-**Fluxo:** MessageSource → Polling → Filter → Transform → Output Channel
-
-#### 🔀 Variação com Lambda
 ```java
 @Bean
 public IntegrationFlow myFlow() {
@@ -1393,31 +1094,11 @@ public IntegrationFlow myFlow() {
 }
 ```
 
-#### 🎯 Padrões Utilizados
-- **Method Chaining** (principal): Ideal para pipelines de mensagens
-- **Function Sequencing**: Para configurações complexas
-
-#### ✅ Resultado
-- **API similar ao Stream**: Processamento fluente de mensagens
-- **Configuração simplificada**: Menos verbosa que XML
-- **Flexibilidade:** Combine diferentes patterns facilmente
-
----
-
-### 📊 Comparação das DSLs Reais
-
-| **Framework** | **Domínio** | **Tipo** | **Padrão Principal** | **Vantagem** |
-|---------------|-------------|----------|-------------------|-------------|
-| **jOOQ** | SQL/Database | Interna | Method Chaining | Type-safety + Fluência |
-| **Cucumber** | Testing/BDD | Externa + Interna | Híbrida | Documentação Executável |
-| **Spring Integration** | Enterprise Integration | Interna | Method Chaining + Lambdas | Configuração Simplificada |
+**Vantagens:** API similar ao Stream, configuração simplificada, flexibilidade
 
 ### 🎯 Lições dos Casos Reais
 
 1. **Combinação de padrões** é comum e eficaz
 2. **Type-safety** é crucial para DSLs de produção
-3. **Integração com APIs existentes** (Stream, Collections) potencializa as DSLs
-4. **Documentação executável** é um benefício valioso
-5. **Lambdas** reduzem significativamente a verbosidade
-
-**Conclusão:** DSLs bem projetadas melhoram drasticamente a produtividade e legibilidade em domínios específicos, especialmente quando combinam múltiplos padrões de forma inteligente.
+3. **Integração com APIs existentes** potencializa DSLs
+4. **Lambdas** reduzem significativamente verbosidade
