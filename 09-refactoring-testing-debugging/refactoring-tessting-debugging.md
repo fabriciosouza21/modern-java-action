@@ -309,6 +309,8 @@ feed.registerObserver(tweet -> {
 - Interface funcional (String -> void)
 - Sem boilerplate de classes
 - Comportamento inline
+
+``` java
     public void notify(String tweet) {
         if(tweet != null && tweet.contains("wine")){
             System.out.println("Today cheese, wine and news! " + tweet);
